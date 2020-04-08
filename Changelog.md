@@ -1,4 +1,19 @@
-### v0.1.0 (2019-03-12)
+### v0.2.0 (2020-04-08)
+
+​	WeBASE-Event-Client（微众区块链中间件平台-客户端事件订阅服务）。
+
+**Update**
+
+- 适配WeBASE-Front v1.3.0
+
+**兼容性**
+
+- 支持FISCO-BCOS v2.2.0 及以上版本
+- WeBASE-Front v1.3.0 及以上版本
+
+
+
+### v0.1.0 (2020-03-12)
 
 ​	WeBASE-Event-Client（微众区块链中间件平台-客户端事件订阅服务）。
 
@@ -9,7 +24,7 @@
 
 **兼容性**
 
-- 支持FISCO-BCOS v2.0.0 及以上版本
+- 支持FISCO-BCOS v2.2.0 及以上版本
 - WeBASE-Front v1.2.3 版本
 
 详细了解，请阅读[**技术文档**](https://webasedoc.readthedocs.io/zh_CN/latest/)。
