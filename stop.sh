@@ -1,8 +1,8 @@
 #!/bin/bash
 
 APP_MAIN=webase.event.client.Application
-CURRENT_DIR=`pwd`
-CONF_DIR=${CURRENT_DIR}/conf
+CURRENT_DIR=`pwd`/
+CONF_DIR=${CURRENT_DIR}conf
 
 processPid=0
 checkProcess(){

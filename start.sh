@@ -2,9 +2,9 @@
 
 APP_MAIN=webase.event.client.Application
 CLASSPATH='conf/:apps/*:lib/*'
-CURRENT_DIR=`pwd`
-LOG_DIR=${CURRENT_DIR}/log
-CONF_DIR=${CURRENT_DIR}/conf
+CURRENT_DIR=`pwd`/
+LOG_DIR=${CURRENT_DIR}log
+CONF_DIR=${CURRENT_DIR}conf
 
 if [ ${JAVA_HOME}"" = "" ];then
     echo "JAVA_HOME has not been configured"

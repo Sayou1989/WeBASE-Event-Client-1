@@ -18,6 +18,7 @@ server:
 
 constant:
   frontIpPort: 127.0.0.1:5002
+  queueName: appId001
 
 logging:
   config: classpath:log4j2.xml

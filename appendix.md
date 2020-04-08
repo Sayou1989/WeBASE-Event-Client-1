@@ -148,3 +148,4 @@ Could not find method compileOnly() for arguments [[org.projectlombok:lombok:1.1
 | spring.rabbitmq.ssl.enabled                      | false                | 是否启用SSL支持  |
 | logging.config                                   | classpath:log4j2.xml | 日志配置文件目录 |
 | constant.frontIpPort                             | 127.0.0.1:5002       | 前置服务IP端口   |
+| constant.queueName                               | appId001             | 要监听的队列名   |

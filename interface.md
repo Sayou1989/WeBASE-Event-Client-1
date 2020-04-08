@@ -181,7 +181,7 @@ true
 | 1    | appId        | string | 否     | 注册事件通知的应用的唯一编号 |
 | 2    | groupId      | int    | 否     | 群组编号                     |
 | 3    | exchangeName | string | 否     | 队列交换机名称               |
-| 4    | queueName    | string | 否     | 队列名称，以用户名作队列名   |
+| 4    | queueName    | string | 否     | 队列名称，以appId作队列名    |
 
 ***2）入参示例***
 
@@ -191,10 +191,10 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/newBlockEvent
 
 ```
 {
-  "appId": "appId7",
+  "appId": "appId001",
   "exchangeName": "exchange_group1",
   "groupId": 1,
-  "queueName": "alice"
+  "queueName": "appId001"
 }
 ```
 
@@ -202,18 +202,11 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/newBlockEvent
 
 ***1）出参表***
 
-| 序号 | 输出参数     | 类型   |      | 备注                              |
-| ---- | ------------ | ------ | ---- | --------------------------------- |
-| 1    | code         | Int    | 否   | 返回码，0：成功 其它：失败        |
-| 2    | message      | String | 否   | 描述                              |
-| 3    |              | Object |      | 节点信息对象                      |
-| 3.1  | id           | int    | 否   | 事件编号                          |
-| 3.2  | eventType    | int    | 否   | 事件类型（1: 出块, 2: 合约event） |
-| 3.3  | appId        | string | 否   | 注册事件通知的应用的唯一编号      |
-| 3.4  | groupId      | string | 否   | 群组编号                          |
-| 3.5  | exchangeName | int    | 否   | 队列所属交换机名字                |
-| 3.6  | queueName    | string | 否   | 队列名称，以用户名作队列名        |
-| 3.7  | routingKey   | string | 是   | 路由键                            |
+| 序号 | 输出参数 | 类型   |      | 备注                       |
+| ---- | -------- | ------ | ---- | -------------------------- |
+| 1    | code     | Int    | 否   | 返回码，0：成功 其它：失败 |
+| 2    | message  | String | 否   | 描述                       |
+| 3    | data     | Object |      | 信息对象                   |
 
 ***2）出参示例***
 
@@ -223,17 +216,7 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/newBlockEvent
 {
   "code": 0,
   "message": "success",
-  "data": [
-    {
-      "id": "8aa4a195706058d60170606041e00001",
-      "eventType": 1,
-      "appId": "appId7",
-      "groupId": 1,
-      "exchangeName": "exchange_group1",
-      "queueName": "alice",
-      "routingKey": "alice_block_appId7"
-    }
-  ]
+  "data": null
 }
 ```
 
@@ -268,9 +251,9 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/newBlockEvent
 | 1    | appId           | string       | 否     | 注册事件通知的应用的唯一编号  |
 | 2    | groupId         | int          | 否     | 群组编号                      |
 | 3    | exchangeName    | string       | 否     | 队列交换机名称                |
-| 4    | queueName       | string       | 否     | 队列名称，以用户名作队列名    |
+| 4    | queueName       | string       | 否     | 队列名称，以appId作队列名     |
 | 5    | contractAddress | string       | 否     | 已部署合约地址                |
-| 6    | contractAbi     | string       | 否     | 已部署合约abi                 |
+| 6    | contractAbi     | List<Object> | 否     | 已部署合约abi                 |
 | 7    | fromBlock       | string       | 否     | 监听的开始块高                |
 | 8    | toBlock         | string       | 否     | 监听的结束块高                |
 | 9    | topicList       | List<String> | 是     | 事件名（如：SetName(string)） |
@@ -283,16 +266,16 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/contractEvent
 
 ```
 {
-  "appId": "appId8",
-  "contractAbi": "[{\"constant\":false,\"inputs\":[{\"name\":\"n\",\"type\":\"string\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"n\",\"type\":\"string\"}],\"name\":\"set2\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"name\",\"type\":\"string\"}],\"name\":\"SetName\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"name\",\"type\":\"string\"}],\"name\":\"SetName2\",\"type\":\"event\"}]",
+  "appId": "appId001",
+  "contractAbi": [{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"n","type":"string"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"name","type":"string"}],"name":"SetName","type":"event"}],
   "contractAddress": "0x8ec4f530256ad3ee3957b2bdccc6d58252ecf29d",
   "exchangeName": "exchange_group1",
   "fromBlock": "latest",
   "groupId": 1,
-  "queueName": "alice",
+  "queueName": "appId001",
   "toBlock": "latest",
   "topicList": [
-    "SetName(string)"
+    "set(string)"
   ]
 }
 ```
@@ -301,23 +284,11 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/contractEvent
 
 ***1）出参表***
 
-| 序号 | 输出参数        | 类型         |      | 备注                              |
-| ---- | --------------- | ------------ | ---- | --------------------------------- |
-| 1    | code            | Int          | 否   | 返回码，0：成功 其它：失败        |
-| 2    | message         | String       | 否   | 描述                              |
-| 3    |                 | Object       |      | 节点信息对象                      |
-| 3.1  | id              | int          | 否   | 事件编号                          |
-| 3.2  | eventType       | int          | 否   | 事件类型（1: 出块, 2: 合约event） |
-| 3.3  | appId           | string       | 否   | 注册事件通知的应用的唯一编号      |
-| 3.4  | groupId         | string       | 否   | 群组编号                          |
-| 3.5  | exchangeName    | int          | 否   | 队列所属交换机名字                |
-| 3.6  | queueName       | string       | 否   | 队列名称，以用户名作队列名        |
-| 3.7  | routingKey      | string       | 是   | 路由键                            |
-| 3.8  | contractAddress | string       | 否   | 已部署合约地址                    |
-| 3.9  | contractAbi     | string       | 否   | 已部署合约abi                     |
-| 3.10 | fromBlock       | string       | 否   | 监听的开始块高                    |
-| 3.11 | toBlock         | string       | 否   | 监听的结束块高                    |
-| 3.12 | topicList       | List<String> | 是   | 事件名（如：SetName(string)）     |
+| 序号 | 输出参数 | 类型   |      | 备注                       |
+| ---- | -------- | ------ | ---- | -------------------------- |
+| 1    | code     | Int    | 否   | 返回码，0：成功 其它：失败 |
+| 2    | message  | String | 否   | 描述                       |
+| 3    | data     | Object |      | 信息对象                   |
 
 ***2）出参示例***
 
@@ -327,22 +298,7 @@ http://127.0.0.1:5006/WeBASE-Event-Client/front/contractEvent
 {
   "code": 0,
   "message": "success",
-  "data": [
-    {
-      "id": "8aa4a195706058d60170606b69260002",
-      "eventType": 2,
-      "appId": "appId8",
-      "groupId": 1,
-      "exchangeName": "exchange_group1",
-      "queueName": "alice",
-      "routingKey": "alice_event_appId8",
-      "contractAbi": "[{\"constant\":false,\"inputs\":[{\"name\":\"n\",\"type\":\"string\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"n\",\"type\":\"string\"}],\"name\":\"set2\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"name\",\"type\":\"string\"}],\"name\":\"SetName\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"name\",\"type\":\"string\"}],\"name\":\"SetName2\",\"type\":\"event\"}]",
-      "fromBlock": "latest",
-      "toBlock": "latest",
-      "contractAddress": "0x8ec4f530256ad3ee3957b2bdccc6d58252ecf29d",
-      "topicList": "SetName(string)"
-    }
-  ]
+  "data": null
 }
 ```
 
