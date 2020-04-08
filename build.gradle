@@ -62,7 +62,7 @@ dependencies {
     compile springboot,jaxb,jwt,swagger,jackson
     
     compile "org.apache.commons:commons-lang3:3.8.1"
-    compile "com.alibaba:fastjson:1.2.60"
+    compile "com.alibaba:fastjson:1.2.67"
     compile "org.fisco-bcos:web3sdk:2.2.0"
 
     compile lombok
